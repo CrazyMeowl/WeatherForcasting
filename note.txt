@@ -8,3 +8,219 @@
 #http://dataservice.accuweather.com/forecasts/v1/daily/5day/353981?apikey=q651HeEBw5DCSyfxDwPoD64U4OSeGkpy
 
 #"ParentCity":{"Key":"353981","LocalizedName":"Ho Chi Minh City", this is the thing that matter
+
+sample
+
+{
+  "Headline": {
+    "EffectiveDate": "2021-04-02T01:00:00+07:00",
+    "EffectiveEpochDate": 1617300000,
+    "Severity": 2,
+    "Text": "Expect showery weather late Thursday night through Friday afternoon",
+    "Category": "rain",
+    "EndDate": "2021-04-02T19:00:00+07:00",
+    "EndEpochDate": 1617364800,
+    "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/extended-weather-forecast/353981?unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?unit=c&lang=en-us"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2021-03-28T07:00:00+07:00",
+      "EpochDate": 1616889600,
+      "Temperature": {
+        "Minimum": {
+          "Value": 26.4,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 36.5,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 3,
+        "IconPhrase": "Partly sunny",
+        "HasPrecipitation": false
+      },
+      "Night": {
+        "Icon": 34,
+        "IconPhrase": "Mostly clear",
+        "HasPrecipitation": false
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=1&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=1&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2021-03-29T07:00:00+07:00",
+      "EpochDate": 1616976000,
+      "Temperature": {
+        "Minimum": {
+          "Value": 26.5,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 35.2,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 3,
+        "IconPhrase": "Partly sunny",
+        "HasPrecipitation": false
+      },
+      "Night": {
+        "Icon": 34,
+        "IconPhrase": "Mostly clear",
+        "HasPrecipitation": false
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=2&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=2&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2021-03-30T07:00:00+07:00",
+      "EpochDate": 1617062400,
+      "Temperature": {
+        "Minimum": {
+          "Value": 26.6,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 35.3,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "HasPrecipitation": false
+      },
+      "Night": {
+        "Icon": 34,
+        "IconPhrase": "Mostly clear",
+        "HasPrecipitation": false
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=3&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=3&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2021-03-31T07:00:00+07:00",
+      "EpochDate": 1617148800,
+      "Temperature": {
+        "Minimum": {
+          "Value": 27.1,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 36,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 3,
+        "IconPhrase": "Partly sunny",
+        "HasPrecipitation": false
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Partly cloudy",
+        "HasPrecipitation": false
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=4&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=4&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2021-04-01T07:00:00+07:00",
+      "EpochDate": 1617235200,
+      "Temperature": {
+        "Minimum": {
+          "Value": 27.1,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 35.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Night": {
+        "Icon": 40,
+        "IconPhrase": "Mostly cloudy w/ showers",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Heavy"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=5&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=5&unit=c&lang=en-us"
+    }
+  ]
+}
+
+
+{'Date': '2021-03-28T07:00:00+07:00', 'EpochDate': 1616889600, 'Temperature': {'Minimum': {'Value': 26.4, 'Unit': 'C', 'UnitType': 17}, 'Maximum': {'Value': 36.5, 'Unit': 'C', 'UnitType': 17}}, 'Day': {'Icon': 3, 'IconPhrase': 'Partly sunny', 'HasPrecipitation': False}, 'Night': {'Icon': 34, 'IconPhrase': 'Mostly clear', 'HasPrecipitation': False}, 'Sources': ['AccuWeather'], 'MobileLink': 'http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=1&unit=c&lang=en-us', 'Link': 'http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=1&unit=c&lang=en-us'}
+each day
+{
+      "Date": "2021-04-01T07:00:00+07:00",
+      "EpochDate": 1617235200,
+      "Temperature": {
+        "Minimum": {
+          "Value": 27.1,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 35.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Night": {
+        "Icon": 40,
+        "IconPhrase": "Mostly cloudy w/ showers",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Heavy"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=5&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/vn/ho-chi-minh-city/353981/daily-weather-forecast/353981?day=5&unit=c&lang=en-us"
+    }
