@@ -1,9 +1,47 @@
+import mysql.connector
 import json
 import time
 import urllib.request
 
+db = mysql.connector.connect(
+	host = 'localhost',
+	user = 'root',
+	passwd = 'hehe',
+	database = 'wherethefourcasting'
+	)
+mycursor = db.cursor()
+
+
+#mycursor.execute('CREATE DATABASE wherethefourcasting') # query to create the data base
+
+#mycursor.execute( 'CREATE TABLE Location (locationID int PRIMARY KEY NOT NULL, name VARCHAR(50), timezone int , region VARCHAR(50), country VARCHAR(50), longtitude float, latitude float, elevation float)')
+
+#mycursor.execute('CREATE TABLE Wfd ( wfddate DATE, mintemp int , maxtemp int, dayweather VARCHAR(30), nightweather VARCHAR(30), locationID int, FOREIGN KEY (locationID) REFERENCES location(locationID) )')
+
+
+'''
+mycursor.execute('DESCRIBE Person')
+
+for x in mycursor:
+	print(x)
+'''
+
+#mycursor.execute('INSERT INTO Person(name,age) VALUES (%s,%s)',('cara',19))
+#db.commit()
+
+'''
+mycursor.execute('SELECT * FROM Person')
+
+for x in mycursor:
+	print(x)
+'''
+
+#DATE YYYY-MM-DD
+
+
 apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
-	
+
+
 def forecast():
 
 	while True:
@@ -15,7 +53,7 @@ def forecast():
 		location_key = datalocation[0]['Key']
 		#print(datalocation)
 		#GET LOCATION detail DATA 
-		locationdetailurl = 'http://dataservice.accuweather.com/locations/v1/'+str(location_key)'?apikey=+'+apikey
+		locationdetailurl = 'http://dataservice.accuweather.com/locations/v1/'+str(location_key)+'?apikey='+apikey
 		with urllib.request.urlopen(locationdetailurl) as detailJSON:
 			locationdetail = json.loads(detailJSON.read().decode())
 		#GET FORECAST DATA
@@ -31,30 +69,9 @@ def forecast():
 		#http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/353981?apikey=q651HeEBw5DCSyfxDwPoD64U4OSeGkpy&metric=true
 		#12 hour hourly
 		#http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353981?apikey=q651HeEBw5DCSyfxDwPoD64U4OSeGkpy&metric=true
-dataforecast,datalocation,a = forecast()
-print(datalocation)
-locationX = datalocation[0]['AdministrativeArea']['LocalizedName']
-print(locationX)
-for i in dataforecast['DailyForecasts']:
 
-	i['Date'] = (i['Date'].split("T"))[0] #change the format YYYY-MM-DDT07:00:00+07:00 to YYYY-MM-DD
-	#print(i['Date'])
-	x = i['Date'].split('-')
-	yearX = x[0]
-	monthX = x[1]
-	dateX = x[2]
-	#print(x)
-	print('Ngày {} tháng {} năm {}: '.format(dateX,monthX,yearX))
-	print(i['Temperature']["Minimum"]['Value'])
-	print(i['Temperature']["Maximum"]['Value'])
-	for j in i:
-		if j == 'Day' or j == 'Night': #print day and night weather
-			print(j)
-			print(i[j]['IconPhrase'])
-			if(i[j]['HasPrecipitation'] == True): #If này phải giữ ( Có mưa hay không )
-				print(i[j]['PrecipitationType'])
-			else:
-				print('Null')
-input()
+a,b,c = forecast()
 
-
+#print(a)
+#print(b)
+print(c)
