@@ -13,9 +13,7 @@ mycursor = db.cursor()
 
 
 #mycursor.execute('CREATE DATABASE wherethefourcasting') # query to create the data base
-#
 #mycursor.execute( 'CREATE TABLE Location (locationID int PRIMARY KEY NOT NULL, name VARCHAR(50), timezone int , region VARCHAR(50), country VARCHAR(50), longitude float, latitude float, elevation float)')
-
 #mycursor.execute('CREATE TABLE Wfd ( wfddate DATE, mintemp int , maxtemp int, dayweather VARCHAR(30), nightweather VARCHAR(30), locationID int, FOREIGN KEY (locationID) REFERENCES location(locationID) )')
 
 
@@ -39,8 +37,8 @@ for x in mycursor:
 #DATE YYYY-MM-DD
 
 
-apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
-
+#apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
+apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj'
 
 def forecast():
 
@@ -100,17 +98,18 @@ def getCitydetail(location_key):
 		_latitude = ld['GeoPosition']['Latitude']
 		_longitude = ld['GeoPosition']['Longitude']
 		_elevation = ld['GeoPosition']['Elevation']['Metric']['Value']
-		print((_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
+		#print((_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
 		return _ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation
 		
 
-
-a = searchCity()
-
-_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation = getCitydetail(a)
-
-promt = input("Do you want to save the information to the database (Y/N)")
-if 'n' in promt or 'N' in promt:
-	pass
-else:
-	mycursor.execute('INSERT INTO location(locationID,name,timezone,region,country,longitude,latitude,elevation) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
+while True:
+	try:
+		a = searchCity()
+		_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation = getCitydetail(a)
+		print((_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
+		promt = input("Do you want to save the information to the database (Y/N)")
+		if 'y' in promt or 'Y' in promt:
+			mycursor.execute('INSERT INTO location(locationID,name,timezone,region,country,longitude,latitude,elevation) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
+			db.commit()
+	except:
+		print("Try again")
