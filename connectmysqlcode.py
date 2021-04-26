@@ -39,7 +39,7 @@ for x in mycursor:
 
 #apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
 apikey = 'p7WWcwkzZjfd7o645MjRU55FhzQ9l1Bk'
-apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj'
+#apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj'
 
 def forecast():
 
@@ -112,5 +112,8 @@ while True:
 		if 'y' in promt or 'Y' in promt:
 			mycursor.execute('INSERT INTO location(locationID,name,timezone,region,country,longitude,latitude,elevation) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
 			db.commit()
-	except:
-		print("Try again")
+	except Exception as Bug:
+		print("game.py:",Bug)
+		print("Please report the bug")
+		input("Double Press Enter to continue !!")
+		input()
