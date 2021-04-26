@@ -38,6 +38,7 @@ for x in mycursor:
 
 
 #apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
+apikey = 'p7WWcwkzZjfd7o645MjRU55FhzQ9l1Bk'
 apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj'
 
 def forecast():
