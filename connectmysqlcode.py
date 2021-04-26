@@ -71,6 +71,46 @@ def forecast():
 		#http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353981?apikey=q651HeEBw5DCSyfxDwPoD64U4OSeGkpy&metric=true
 
 
-#print(a)
-#print(b)
-print(c)
+def searchCity():
+	while True:
+	
+		searchURL = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey='+apikey+'&q='+(input("Please enter the city name: ").replace(' ','%20'))
+
+		with urllib.request.urlopen(searchURL) as searchJSON:
+			datalocation = json.loads(searchJSON.read().decode())
+	
+		location_key = datalocation[0]['Key']
+		return location_key
+
+def getCitydetail(location_key):
+
+
+
+	locationdetailurl = 'http://dataservice.accuweather.com/locations/v1/'+str(location_key)+'?apikey='+apikey
+	
+	with urllib.request.urlopen(locationdetailurl) as detailJSON:
+		locationdetail = json.loads(detailJSON.read().decode())
+
+		ld = locationdetail
+		_ID = ld['Key']
+		_name = ld['EnglishName']
+		_timezone = ld['TimeZone']['GmtOffset']
+		_region = ld['Region']['EnglishName']
+		_country = ld['Country']['EnglishName']
+		_latitude = ld['GeoPosition']['Latitude']
+		_longitude = ld['GeoPosition']['Longitude']
+		_elevation = ld['GeoPosition']['Elevation']['Metric']['Value']
+		print((_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
+		return _ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation
+		
+
+
+a = searchCity()
+
+_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation = getCitydetail(a)
+
+promt = input("Do you want to save the information to the database (Y/N)")
+if 'n' in promt or 'N' in promt:
+	pass
+else:
+	mycursor.execute('INSERT INTO location(locationID,name,timezone,region,country,longitude,latitude,elevation) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
