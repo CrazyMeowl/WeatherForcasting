@@ -13,8 +13,8 @@ mycursor = db.cursor()
 
 
 #mycursor.execute('CREATE DATABASE wherethefourcasting') # query to create the data base
-
-#mycursor.execute( 'CREATE TABLE Location (locationID int PRIMARY KEY NOT NULL, name VARCHAR(50), timezone int , region VARCHAR(50), country VARCHAR(50), longtitude float, latitude float, elevation float)')
+#
+#mycursor.execute( 'CREATE TABLE Location (locationID int PRIMARY KEY NOT NULL, name VARCHAR(50), timezone int , region VARCHAR(50), country VARCHAR(50), longitude float, latitude float, elevation float)')
 
 #mycursor.execute('CREATE TABLE Wfd ( wfddate DATE, mintemp int , maxtemp int, dayweather VARCHAR(30), nightweather VARCHAR(30), locationID int, FOREIGN KEY (locationID) REFERENCES location(locationID) )')
 
@@ -70,7 +70,6 @@ def forecast():
 		#12 hour hourly
 		#http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/353981?apikey=q651HeEBw5DCSyfxDwPoD64U4OSeGkpy&metric=true
 
-a,b,c = forecast()
 
 #print(a)
 #print(b)

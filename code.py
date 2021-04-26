@@ -15,7 +15,7 @@ def forecast():
 		location_key = datalocation[0]['Key']
 		#print(datalocation)
 		#GET LOCATION detail DATA 
-		locationdetailurl = 'http://dataservice.accuweather.com/locations/v1/'+str(location_key)'?apikey=+'+apikey
+		locationdetailurl = 'http://dataservice.accuweather.com/locations/v1/'+str(location_key)+'?apikey='+apikey
 		with urllib.request.urlopen(locationdetailurl) as detailJSON:
 			locationdetail = json.loads(detailJSON.read().decode())
 		#GET FORECAST DATA
