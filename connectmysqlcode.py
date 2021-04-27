@@ -108,7 +108,7 @@ while True:
 		a = searchCity()
 		_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation = getCitydetail(a)
 		print((_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
-		promt = input("Do you want to save the information to the database (Y/N)")
+		promt = input("Do you want to save the information to the database (Y/N): ")
 		if 'y' in promt or 'Y' in promt:
 			mycursor.execute('INSERT INTO location(locationID,name,timezone,region,country,longitude,latitude,elevation) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(_ID,_name,_timezone,_region,_country,_longitude,_latitude,_elevation))
 			db.commit()
