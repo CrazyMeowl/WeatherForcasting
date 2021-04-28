@@ -40,8 +40,8 @@ try:
 	#DATE YYYY-MM-DD
 
 
-	#apikey = 'p7WWcwkzZjfd7o645MjRU55FhzQ9l1Bk'
-	apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj'
+	apikey = 'X9pkAse76Fgcvlf89qQhod0J5mkl16Fc' #CrazyMeowl api
+	#apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj' #vvnt api
 	def clearConsole():
 		os.system("cls")
 	def forecast(location_key):
@@ -133,7 +133,7 @@ try:
 	[sg.Text(key = 'messagebox')],
 	[sg.Output(size=(100,10))],
 	#[sg.Input(key = 'in2')],
-	[sg.Button('Search'),sg.Button('Add'),sg.Button('Forecast'),sg.Button('Delete WFD'), sg.Exit()]] 
+	[sg.Button('Search'),sg.Button('Add'),sg.Button('Forecast'),sg.Button('DeleteWFD'), sg.Exit()]] 
 
 	window = sg.Window('Weather Forcasting', layout=layout, margins=(5, 5))
 
@@ -175,8 +175,10 @@ try:
 			
 			#forecast(623)
 			sg.Popup('Done')
-		elif event == 'Delete WFD':
+		elif event == 'DeleteWFD':
 			cursor.execute('DELETE FROM wfd WHERE locationID > 0')
+			db.commit()
+			print('done')
 	window.close()
 
 except Exception as bug:
