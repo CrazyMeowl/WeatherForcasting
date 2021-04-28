@@ -2,7 +2,9 @@ import json
 import time
 import urllib.request
 
-apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
+#apikey = 'q651HeEBw5DCSyfxDwPoD64U4OSeGkpy'
+
+apikey = 'p7WWcwkzZjfd7o645MjRU55FhzQ9l1Bk'
 	
 def forecast():
 
