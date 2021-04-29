@@ -39,9 +39,6 @@ try:
 
 	#DATE YYYY-MM-DD
 
-
-	apikey = 'X9pkAse76Fgcvlf89qQhod0J5mkl16Fc' #CrazyMeowl api
-	#apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj' #vvnt api
 	def clearConsole():
 		os.system("cls")
 	def forecast(location_key):
@@ -77,7 +74,12 @@ try:
 			else:
 				nightrain = 'Null'
 			print(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key)
-			cursor.execute('INSERT INTO wfd(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,locationID) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key))
+			#cursor.execute('INSERT INTO wfd(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,locationID) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key))
+			#db.commit()
+			try:
+				cursor.execute('INSERT INTO wfd VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key))
+			except:
+				cursor.execute('UPDATE wfd SET mintemp = %s, maxtemp = %s, dayweather = %s, dayrain = %s, nightweather = %s, nightrain = %s WHERE locationID = %s AND wfddate = %s',(mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key,wfddate))
 			db.commit()
 
 		#1 hour hourly patern
