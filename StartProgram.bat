@@ -1,2 +1,0 @@
-python code.py
-pause

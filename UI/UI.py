@@ -129,3 +129,6 @@ window.close()
 
 #Create the UI
 #sg.Window(title="", layout=layout, margins=(480, 240)).read()
+
+#example query
+#SELECT name FROM location as L , wfd as W WHERE L.locationID = W.LocationID AND W.mintemp < 20

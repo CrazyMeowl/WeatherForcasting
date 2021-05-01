@@ -6,6 +6,10 @@ try:
 	import PySimpleGUI as sg
 	import os
 
+	#apikey = 'X9pkAse76Fgcvlf89qQhod0J5mkl16Fc' #CrazyMeowl api
+	#apikey = 'tgF9JGfFQW0YKArJUP1cZECMeg6iQmMj' #vvnt api
+	#apikey = 'c8uNA7ssdCoefsvrXek9O6cpvAaRZU6e' #chilli api
+	apikey = 'PZF7di0mO0K6rPgAkSpiPDc26Toe6nGI' #+ api
 	db = mysql.connector.connect(
 		host = 'localhost',
 		user = 'root',
@@ -38,6 +42,8 @@ try:
 	'''
 
 	#DATE YYYY-MM-DD
+	def clearOutput():
+		window.FindElement('_output_').Update('')
 
 	def clearConsole():
 		os.system("cls")
@@ -49,6 +55,8 @@ try:
 			dataforecast = json.loads(forecastJSON.read().decode())
 		#print(dataforecast)
 		#return dataforecast
+		insertCount = 0
+		updateCount = 0
 		for i in dataforecast['DailyForecasts']:
 			wfddate = (i['Date'].split("T"))[0]
 			#print(i['Date'])
@@ -78,10 +86,12 @@ try:
 			#db.commit()
 			try:
 				cursor.execute('INSERT INTO wfd VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(wfddate,mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key))
+				insertCount = insertCount + 1
 			except:
 				cursor.execute('UPDATE wfd SET mintemp = %s, maxtemp = %s, dayweather = %s, dayrain = %s, nightweather = %s, nightrain = %s WHERE locationID = %s AND wfddate = %s',(mintemp,maxtemp,dayweather,dayrain,nightweather,nightrain,location_key,wfddate))
+				updateCount = updateCount + 1
 			db.commit()
-
+		return updateCount,insertCount
 		#1 hour hourly patern
 		#http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/353981?apikey=q651HeEBw5DCSyfxDwPoD64U4OSeGkpy&metric=true
 		#12 hour hourly
@@ -133,7 +143,7 @@ try:
 
 	layout = [[sg.Text('City Name'),sg.Input(key = 'LocationSearchBox')],
 	[sg.Text(key = 'messagebox')],
-	[sg.Output(size=(100,10))],
+	[sg.Output(size=(100,10),key = '_output_')],
 	#[sg.Input(key = 'in2')],
 	[sg.Button('Search'),sg.Button('Add'),sg.Button('Forecast'),sg.Button('DeleteWFD'), sg.Exit()]] 
 
@@ -141,14 +151,17 @@ try:
 
 
 	while True:                             # The Event Loop    
-		event, values = window.read()   
+		updateCount = 0
+		insertCount = 0
+		event, values = window.read()
+		clearOutput()   
 		if event == sg.WIN_CLOSED or event == 'Exit':
 			break      
 		elif event == 'Search':
 			temp = values['LocationSearchBox']
 			if len(temp) != 0:
-				result = searchCity(temp)
-				print(result)
+				searchCity(temp)
+				
 			else:
 				sg.Popup('Please Enter at the Search Box to search')
 			#window['messagebox'].update('IF you want to add the city to the database click the "Add" button bellow')
@@ -172,14 +185,19 @@ try:
 				newlist.append(x[0])
 			print(newlist)
 			for _ in newlist:
-				forecast(_)
+				uCount , iCount = forecast(_)
+				updateCount += uCount
+				insertCount += iCount
+			clearOutput()
+			print('Updated',updateCount,'rows')
+			print('Inserted',insertCount,'rows')
 				#print(x[0])
 			
 			#forecast(623)
 			sg.Popup('Done')
 		elif event == 'DeleteWFD':
-			cursor.execute('DELETE FROM wfd WHERE locationID > 0')
-			db.commit()
+			#cursor.execute('DELETE FROM wfd WHERE locationID > 0')
+			#db.commit()
 			print('done')
 	window.close()
 
