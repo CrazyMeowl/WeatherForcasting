@@ -2,7 +2,8 @@ USE wherethefourcasting;
 
 -- Drop existing tables
 DROP TABLE IF EXISTS user_authen;
-DROP TABLE IF EXISTS user_contacts;
+DROP TABLE IF EXISTS user_emails;
+DROP TABLE IF EXISTS user_phone;
 DROP TABLE IF EXISTS user_profileimages;
 DROP TABLE IF EXISTS user_activities;
 
@@ -17,11 +18,19 @@ CREATE TABLE user_authen (
     foreign key (locationID) references location(locationID)
     );
 
-CREATE TABLE user_contacts (
+CREATE TABLE user_emails (
 	email VARCHAR(60),
     userID VARCHAR(30) NOT NULL,
     
     primary key (email),
+    foreign key (userID) references user_authen(userID)
+    );
+    
+CREATE TABLE user_phones (
+	phone BIGINT,
+    userID VARCHAR(30) NOT NULL,
+    
+    primary key (phone),
     foreign key (userID) references user_authen(userID)
     );
     
@@ -62,16 +71,27 @@ INSERT INTO user_authen VALUES ("@yoasobi", "Yoasobi", "trygfhbnv098", 328328);
 INSERT INTO user_authen VALUES ("@donaldtrump", "Donald Trump", "donalddonald", 349727);
 
 
--- Contact
-INSERT INTO user_contacts VALUES ("chillisaucery@gmail.com", "@chillisauce");
-INSERT INTO user_contacts VALUES ("luuhienlong201@gmail.com", "@chillisauce");
-INSERT INTO user_contacts VALUES ("ITITIU190haha@student.emo.hcmiu.us", "@chillisauce");
-INSERT INTO user_contacts VALUES ("randomlygenerated432512@gmail.com", "@chillisauce");
-INSERT INTO user_contacts VALUES ("hollowknight@gmail.business.com", "@teamcherry");
-INSERT INTO user_contacts VALUES ("silksong@gmail.business.com", "@teamcherry");
-INSERT INTO user_contacts VALUES ("donaldtrump@gmail.com", "@donaldtrump");
-INSERT INTO user_contacts VALUES ("donaldtrumpoffical@gmail.com", "@donaldtrump");
-INSERT INTO user_contacts VALUES ("donaldtrumpactualoffical@gmail.com", "@donaldtrump");
+-- Emails
+INSERT INTO user_emails VALUES ("chillisaucery@gmail.com", "@chillisauce");
+INSERT INTO user_emails VALUES ("luuhienlong201@gmail.com", "@chillisauce");
+INSERT INTO user_emails VALUES ("ITITIU190haha@student.emo.hcmiu.us", "@chillisauce");
+INSERT INTO user_emails VALUES ("randomlygenerated432512@gmail.com", "@chillisauce");
+INSERT INTO user_emails VALUES ("hollowknight@gmail.business.com", "@teamcherry");
+INSERT INTO user_emails VALUES ("silksong@gmail.business.com", "@teamcherry");
+INSERT INTO user_emails VALUES ("donaldtrump@gmail.com", "@donaldtrump");
+INSERT INTO user_emails VALUES ("donaldtrumpoffical@gmail.com", "@donaldtrump");
+INSERT INTO user_emails VALUES ("donaldtrumpactualoffical@gmail.com", "@donaldtrump");
+
+
+-- Phones
+INSERT INTO user_phones VALUES (0912444555, "@chillisauce");
+INSERT INTO user_phones VALUES (0912444666, "@chillisauce");
+INSERT INTO user_phones VALUES (0123456789, "@chillisauce");
+INSERT INTO user_phones VALUES (0912555999, "@crazymeowl");
+INSERT INTO user_phones VALUES (0912111555, "@crazymeowl");
+INSERT INTO user_phones VALUES (0912951847, "@yoasobi");
+
+
 
 
 -- Profile Images
