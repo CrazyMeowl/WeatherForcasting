@@ -66,6 +66,94 @@ WHERE ((wfd.locationID = location.locationID) AND (location.region = 'Asia' OR l
 ORDER BY timezone DESC;
 
 
+-- Query 6
+-- Select all username that has registered no email and no phone
+
+SELECT DISTINCT username
+FROM wherethefourcasting.user_authen, user_emails, user_phones
+WHERE (user_authen.userID NOT IN (SELECT userID from user_emails)
+	AND user_authen.userID NOT IN (SELECT userID from user_phones));
+
+
+-- Query 7
+-- In weather information data table, select the latest 3 records from each location
+
+-- Begin query
+
+DROP TABLE IF EXISTS latest5;
+DROP TABLE IF EXISTS wfd_clone;
+
+CREATE TABLE wfd_clone LIKE wfd;
+INSERT INTO wfd_clone SELECT * FROM wfd;
+
+CREATE TABLE latest5 (
+	wfddate DATE,
+	locationID INT,
+	dayrain VARCHAR(30),
+	nightrain VARCHAR(30),
+    maxtemp INT,
+    mintemp INT
+);
+
+-- Loop 1
+INSERT INTO latest5 SELECT MAX(wfd_clone.wfddate) as wfddate, locationID, dayrain, nightrain, maxtemp, mintemp
+						FROM wfd_clone
+						GROUP BY wfd_clone.locationID;
+WITH Temp AS (SELECT MAX(wfd_clone.wfddate) as wfddate, locationID, dayrain, nightrain, maxtemp, mintemp
+						FROM wfd_clone
+						GROUP BY wfd_clone.locationID)	
+DELETE wfd_clone 
+FROM wfd_clone, Temp 
+WHERE (wfd_clone.wfddate = Temp.wfddate AND wfd_clone.locationID = Temp.locationID);
+-- End loop 1
+
+-- Loop 2
+INSERT INTO latest5 SELECT MAX(wfd_clone.wfddate) as wfddate, locationID, dayrain, nightrain, maxtemp, mintemp
+						FROM wfd_clone
+						GROUP BY wfd_clone.locationID;
+WITH Temp AS (SELECT MAX(wfd_clone.wfddate) as wfddate, locationID, dayrain, nightrain, maxtemp, mintemp
+						FROM wfd_clone
+						GROUP BY wfd_clone.locationID)
+DELETE wfd_clone 
+FROM wfd_clone, Temp 
+WHERE (wfd_clone.wfddate = Temp.wfddate AND wfd_clone.locationID = Temp.locationID);
+-- End loop 2
+
+-- Loop 3
+INSERT INTO latest5 SELECT MAX(wfd_clone.wfddate) as wfddate, locationID, dayrain, nightrain, maxtemp, mintemp
+						FROM wfd_clone
+						GROUP BY wfd_clone.locationID;
+WITH Temp AS (SELECT MAX(wfd_clone.wfddate) as wfddate, locationID, dayrain, nightrain, maxtemp, mintemp
+						FROM wfd_clone
+						GROUP BY wfd_clone.locationID)
+DELETE wfd_clone 
+FROM wfd_clone, Temp 
+WHERE (wfd_clone.wfddate = Temp.wfddate AND wfd_clone.locationID = Temp.locationID);
+-- End loop 3
+	
+SELECT *
+FROM latest5;
+
+DROP TABLE IF EXISTS latest5;
+DROP TABLE IF EXISTS wfd_clone;
+
+-- End query
+
+
+-- Query 8
+-- Select users that has searched all locations
+
+WITH user_search_count AS ( 
+	SELECT userID, COUNT(DISTINCT(search_location)) as search_count
+    FROM user_activities
+    GROUP BY userID
+)
+SELECT DISTINCT userID
+FROM user_search_count, location
+WHERE (search_count = (SELECT COUNT(*) FROM location));
+
+
+
 
 
 
