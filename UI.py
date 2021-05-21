@@ -13,7 +13,7 @@ def clearOutput():
 
 #Filter buttons
 ALL_FILTER_BUTTON = 'Filter all'
-LOCATION_FILTER_BUTTON = 'Filter location'
+LOCATION_FILTER_BUTTON = 'Filter location Or Run Query'
 WEATHER_FILTER_BUTTON = 'Filter weather'
 
 #Query keys
@@ -51,7 +51,7 @@ layout = [
 	[sg.Text('Weather query: '), sg.Input(key=WEATHER_QUERY_KEY, size = (130,1))],
 	
 	#Executing buttons
-	[sg.Button(ALL_FILTER_BUTTON),sg.Button(LOCATION_FILTER_BUTTON), sg.Button(WEATHER_FILTER_BUTTON), sg.Exit()]
+	[sg.Button(LOCATION_FILTER_BUTTON), sg.Exit()]
 
 	] 
 

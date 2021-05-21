@@ -1,4 +1,4 @@
-	try:
+try:
 	import mysql.connector
 	import json
 	import time
@@ -196,8 +196,8 @@
 			#forecast(623)
 			sg.Popup('Done')
 		elif event == 'DeleteWFD':
-			#cursor.execute('DELETE FROM wfd WHERE locationID > 0')
-			#db.commit()
+			cursor.execute('DELETE FROM wfd WHERE locationID > 0')
+			db.commit()
 			print('done')
 	window.close()
 

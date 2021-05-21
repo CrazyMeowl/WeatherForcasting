@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
--- Host: localhost    Database: wherethefourcasting
+-- Host: 127.0.0.1    Database: wherethefourcasting
 -- ------------------------------------------------------
 -- Server version	8.0.24
 
@@ -46,6 +46,138 @@ INSERT INTO `location` VALUES (623,'Paris',2,'Europe','France',2.351,48.857,35),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_activities`
+--
+
+DROP TABLE IF EXISTS `user_activities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_activities` (
+  `userID` varchar(30) NOT NULL,
+  `search_date` date NOT NULL,
+  `search_location` int NOT NULL,
+  PRIMARY KEY (`userID`,`search_date`,`search_location`),
+  CONSTRAINT `user_activities_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user_authen` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_activities`
+--
+
+LOCK TABLES `user_activities` WRITE;
+/*!40000 ALTER TABLE `user_activities` DISABLE KEYS */;
+INSERT INTO `user_activities` VALUES ('@billfashion','2021-04-27',623),('@billfashion','2021-04-27',178087),('@billfashion','2021-05-05',623),('@chillisauce','2021-04-27',623),('@chillisauce','2021-04-27',178087),('@chillisauce','2021-04-27',327659),('@chillisauce','2021-04-28',300597),('@chillisauce','2021-05-05',623),('@chillisauce','2021-05-06',623),('@chillisauce','2021-05-07',623),('@donaldtrump','2021-04-27',327659),('@nhattan','2021-04-28',300597),('@nhattan','2021-04-29',178087),('@nhattan','2021-04-29',208971),('@nhattan','2021-04-29',230276),('@nhattan','2021-04-29',300597),('@nhattan','2021-04-29',327659),('@nhattan','2021-05-01',623),('@nhattan','2021-05-01',22889),('@nhattan','2021-05-01',328328),('@nhattan','2021-05-01',351194),('@nhattan','2021-05-01',353412),('@nhattan','2021-05-02',356204),('@nhattan','2021-05-02',414495),('@nhattan','2021-05-02',979978),('@nhattan','2021-05-05',347625),('@nhattan','2021-05-05',349727),('@nhattan','2021-05-05',351820),('@nhattan','2021-05-05',352499),('@nhattan','2021-05-05',353981);
+/*!40000 ALTER TABLE `user_activities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_authen`
+--
+
+DROP TABLE IF EXISTS `user_authen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_authen` (
+  `userID` varchar(30) NOT NULL,
+  `username` varchar(30) DEFAULT NULL,
+  `user_pw` varchar(30) DEFAULT NULL,
+  `locationID` int NOT NULL,
+  PRIMARY KEY (`userID`),
+  KEY `locationID` (`locationID`),
+  CONSTRAINT `user_authen_ibfk_1` FOREIGN KEY (`locationID`) REFERENCES `location` (`locationID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_authen`
+--
+
+LOCK TABLES `user_authen` WRITE;
+/*!40000 ALTER TABLE `user_authen` DISABLE KEYS */;
+INSERT INTO `user_authen` VALUES ('@billfashion','Bill','abc123456',414495),('@brackey','Brackey','lkjhgf321',328328),('@chillisauce','Chillisauce','1233456abc',414495),('@chillyroom','Chilly Room','hahahha123',347625),('@crazymeowl','Lido','1233456789',414495),('@donaldtrump','Donald Trump','donalddonald',349727),('@gigguk','Gigguk','asdfg321',327659),('@louish','Louish','zxccvb123',300597),('@nhattan','Link','1233456789',414495),('@teamcherry','Cherry','qwertuabc',328328),('@ubisoft','Ubisoft','poiuyt123',328328),('@yoasobi','Yoasobi','trygfhbnv098',328328);
+/*!40000 ALTER TABLE `user_authen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_emails`
+--
+
+DROP TABLE IF EXISTS `user_emails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_emails` (
+  `email` varchar(60) NOT NULL,
+  `userID` varchar(30) NOT NULL,
+  PRIMARY KEY (`email`),
+  KEY `userID` (`userID`),
+  CONSTRAINT `user_emails_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user_authen` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_emails`
+--
+
+LOCK TABLES `user_emails` WRITE;
+/*!40000 ALTER TABLE `user_emails` DISABLE KEYS */;
+INSERT INTO `user_emails` VALUES ('chillisaucery@gmail.com','@chillisauce'),('ITITIU190haha@student.emo.hcmiu.us','@chillisauce'),('luuhienlong201@gmail.com','@chillisauce'),('randomlygenerated432512@gmail.com','@chillisauce'),('donaldtrump@gmail.com','@donaldtrump'),('donaldtrumpactualoffical@gmail.com','@donaldtrump'),('donaldtrumpoffical@gmail.com','@donaldtrump'),('hollowknight@gmail.business.com','@teamcherry'),('silksong@gmail.business.com','@teamcherry');
+/*!40000 ALTER TABLE `user_emails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_phones`
+--
+
+DROP TABLE IF EXISTS `user_phones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_phones` (
+  `phone` bigint NOT NULL,
+  `userID` varchar(30) NOT NULL,
+  PRIMARY KEY (`phone`),
+  KEY `userID` (`userID`),
+  CONSTRAINT `user_phones_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user_authen` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_phones`
+--
+
+LOCK TABLES `user_phones` WRITE;
+/*!40000 ALTER TABLE `user_phones` DISABLE KEYS */;
+INSERT INTO `user_phones` VALUES (123456789,'@chillisauce'),(912444555,'@chillisauce'),(912444666,'@chillisauce'),(912111555,'@crazymeowl'),(912555999,'@crazymeowl'),(912951847,'@yoasobi');
+/*!40000 ALTER TABLE `user_phones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_profileimages`
+--
+
+DROP TABLE IF EXISTS `user_profileimages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_profileimages` (
+  `userID` varchar(30) NOT NULL,
+  `image_date` date NOT NULL,
+  `filename` varchar(50) NOT NULL,
+  PRIMARY KEY (`userID`,`filename`),
+  CONSTRAINT `user_profileimages_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user_authen` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_profileimages`
+--
+
+LOCK TABLES `user_profileimages` WRITE;
+/*!40000 ALTER TABLE `user_profileimages` DISABLE KEYS */;
+INSERT INTO `user_profileimages` VALUES ('@chillisauce','2021-05-12','abc.png'),('@chillisauce','2021-05-10','arknights.png'),('@chillisauce','2021-05-12','hornet.png'),('@chillisauce','2021-05-09','madoka.png'),('@chillisauce','2021-05-12','ricardo.png'),('@chillisauce','2021-05-12','trainerred.png'),('@donaldtrump','2021-05-07','donalddonald.png'),('@donaldtrump','2021-05-05','donaldtrump.png'),('@donaldtrump','2021-05-09','trumptrump.png'),('@gigguk','2021-05-01','domestic.png'),('@gigguk','2021-05-12','electricalengineer.png');
+/*!40000 ALTER TABLE `user_profileimages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `wfd`
 --
 
@@ -86,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-09  0:56:50
+-- Dump completed on 2021-05-14 23:31:34
