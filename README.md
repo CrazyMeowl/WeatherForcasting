@@ -1,4 +1,5 @@
-# WhereThoPhoCasting
+# Weather Forcasting Application
+Database project for learning to query database
 
 Testing webhook for discord again
 mysqldump -u root -p wherethefourcasting
